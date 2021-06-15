@@ -5,11 +5,13 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.Country;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 
+@Repository
 public class GeoLiteCountryDaoImpl implements GeoLiteCountryDao {
 
     @Value("${dbGeoLiteLocation}")

@@ -1,13 +1,16 @@
 package com.prokopovich.roomswithbulbs.service;
 
+import com.prokopovich.roomswithbulbs.dao.GeoLiteCountryDao;
 import com.prokopovich.roomswithbulbs.dao.RoomDao;
 import com.prokopovich.roomswithbulbs.entity.Room;
 import com.prokopovich.roomswithbulbs.enumeration.BulStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoomServiceImpl implements RoomService {
 
     private static final Logger LOGGER = LogManager.getLogger(RoomServiceImpl.class);
@@ -50,11 +53,5 @@ public class RoomServiceImpl implements RoomService {
         if(country == null) country = "";
         if(bulStatus == null) bulStatus = "";
         return (List<Room>) roomDao.findByNameAndCountryAndStatus(name, country, bulStatus);
-    }
-
-    @Override
-    public boolean isCountryByIp() {
-
-        return true;
     }
 }

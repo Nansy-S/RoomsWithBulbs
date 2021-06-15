@@ -5,6 +5,7 @@ import com.prokopovich.roomswithbulbs.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,6 +16,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.Collection;
 
+@Repository
 public class RoomDaoImpl implements RoomDao {
 
     private static final Logger LOGGER = LogManager.getLogger(RoomDaoImpl.class);
