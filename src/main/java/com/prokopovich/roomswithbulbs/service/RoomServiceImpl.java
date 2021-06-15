@@ -51,4 +51,10 @@ public class RoomServiceImpl implements RoomService {
         if(bulStatus == null) bulStatus = "";
         return (List<Room>) roomDao.findByNameAndCountryAndStatus(name, country, bulStatus);
     }
+
+    @Override
+    public boolean isCountryByIp() {
+
+        return true;
+    }
 }

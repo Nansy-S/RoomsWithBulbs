@@ -13,4 +13,6 @@ public interface RoomService {
     List<Room> getAllRooms();
 
     List<Room> filterRooms(String name, String country, String bulStatus);
+
+    public boolean isCountryByIp();
 }
