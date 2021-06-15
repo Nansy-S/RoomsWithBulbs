@@ -15,18 +15,15 @@ public class Room {
     private String name;
     @Column(name = "country")
     private String country;
-    @Column(name = "ip_address")
-    private String ipAddress;
     @Column(name = "bul_status")
     private String bulStatus;
 
     public Room() { }
 
-    public Room(int id, String name, String country, String ipAddress, String bulStatus) {
+    public Room(int id, String name, String country, String bulStatus) {
         this.id = id;
         this.name = name;
         this.country = country;
-        this.ipAddress = ipAddress;
         this.bulStatus = bulStatus;
     }
 
@@ -54,14 +51,6 @@ public class Room {
         this.country = country;
     }
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
     public String getBulStatus() {
         return bulStatus;
     }
@@ -78,7 +67,6 @@ public class Room {
         return id == room.id &&
                 Objects.equals(name, room.name) &&
                 Objects.equals(country, room.country) &&
-                Objects.equals(ipAddress, room.ipAddress) &&
                 Objects.equals(bulStatus, room.bulStatus);
     }
 
@@ -87,7 +75,6 @@ public class Room {
         int result = id;
         result = 37 * result + (name != null ? name.hashCode() : 0);
         result = 37 * result + (country != null ? country.hashCode() : 0);
-        result = 37 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
         result = 37 * result + (bulStatus != null ? bulStatus.hashCode() : 0);
         return result;
     }
@@ -98,7 +85,6 @@ public class Room {
                 "id = " + id +
                 ", name = " + name +
                 ", country = " + country +
-                ", ipAddress = " + ipAddress +
                 ", bulStatus = " + bulStatus + ';';
     }
 }

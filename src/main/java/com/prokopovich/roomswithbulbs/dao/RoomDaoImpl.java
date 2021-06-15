@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -17,6 +18,8 @@ import java.util.Collection;
 public class RoomDaoImpl implements RoomDao {
 
     private static final Logger LOGGER = LogManager.getLogger(RoomDaoImpl.class);
+    private static final String SQL_SELECT_FILTER = "SELECT e FROM Room e " +
+            "WHERE e.name LIKE :name AND e.country LIKE :country AND e.bulStatus LIKE :bulStatus";
 
     private final EntityManagerFactory entityManagerFactory;
 
@@ -82,27 +85,34 @@ public class RoomDaoImpl implements RoomDao {
     @Override
     public Room findByName(String name) throws DaoException {
         LOGGER.info("findByName method is executed - name = " + name);
-        return findAllByOneParameter("name", name).iterator().next();
-    }
 
-    @Override
-    public Collection<Room> findAllByCountry(String country) throws DaoException {
-        LOGGER.info("findAllByCountry method is executed - country = " + country);
-        return findAllByOneParameter("country", country);
-    }
-
-    private Collection<Room> findAllByOneParameter(String field, String parameter) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Room> criteriaQuery = criteriaBuilder.createQuery(Room.class);
             Root<Room> tRoot = criteriaQuery.from(Room.class);
-            Predicate predicate = criteriaBuilder.equal(tRoot.get(field), parameter);
+            Predicate predicate = criteriaBuilder.equal(tRoot.get("name"), name);
             criteriaQuery.where(predicate);
             if(entityManager.createQuery(criteriaQuery).getResultList().isEmpty()) {
                 return null;
             }
-            return entityManager.createQuery(criteriaQuery).getResultList();
+            return entityManager.createQuery(criteriaQuery).getResultList().iterator().next();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public Collection<Room> findByNameAndCountryAndStatus(String name, String country, String bulStatus) throws DaoException {
+        LOGGER.info("findByUsernameAndRoleAndStatus method is executed - name = " + name +
+                ", country = " + country + ", bulStatus = " + bulStatus);
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            Query query = entityManager.createQuery(SQL_SELECT_FILTER);
+            query.setParameter("name", "%"+name+"%");
+            query.setParameter("country", "%"+country+"%");
+            query.setParameter("bulStatus", "%"+bulStatus+"%");
+            return query.getResultList();
         } finally {
             entityManager.close();
         }
