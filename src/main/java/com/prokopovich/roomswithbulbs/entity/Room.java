@@ -1,6 +1,7 @@
 package com.prokopovich.roomswithbulbs.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_accounts")
@@ -14,8 +15,20 @@ public class Room {
     private String name;
     @Column(name = "country")
     private String country;
+    @Column(name = "ip_address")
+    private String ipAddress;
     @Column(name = "bul_status")
     private String bulStatus;
+
+    public Room() { }
+
+    public Room(int id, String name, String country, String ipAddress, String bulStatus) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
+        this.ipAddress = ipAddress;
+        this.bulStatus = bulStatus;
+    }
 
     public int getId() {
         return id;
@@ -41,11 +54,51 @@ public class Room {
         this.country = country;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
     public String getBulStatus() {
         return bulStatus;
     }
 
     public void setBulStatus(String bulStatus) {
         this.bulStatus = bulStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return id == room.id &&
+                Objects.equals(name, room.name) &&
+                Objects.equals(country, room.country) &&
+                Objects.equals(ipAddress, room.ipAddress) &&
+                Objects.equals(bulStatus, room.bulStatus);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 37 * result + (name != null ? name.hashCode() : 0);
+        result = 37 * result + (country != null ? country.hashCode() : 0);
+        result = 37 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
+        result = 37 * result + (bulStatus != null ? bulStatus.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Room: " +
+                "id = " + id +
+                ", name = " + name +
+                ", country = " + country +
+                ", ipAddress = " + ipAddress +
+                ", bulStatus = " + bulStatus + ';';
     }
 }
