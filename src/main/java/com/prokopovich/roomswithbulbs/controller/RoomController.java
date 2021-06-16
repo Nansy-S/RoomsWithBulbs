@@ -1,6 +1,5 @@
 package com.prokopovich.roomswithbulbs.controller;
 
-import com.prokopovich.roomswithbulbs.dto.RoomDto;
 import com.prokopovich.roomswithbulbs.entity.Room;
 import com.prokopovich.roomswithbulbs.enumeration.BulbStatus;
 import com.prokopovich.roomswithbulbs.service.CountryService;
@@ -9,11 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -109,24 +106,11 @@ public class RoomController {
 
     @PostMapping(value = "/room/new")
     public ModelAndView saveUser(Model model,
-                                 @Valid @ModelAttribute("roomForm") RoomDto newRoomDto, Errors errors) {
+                                 @ModelAttribute("roomForm") Room newRoom) {
         LOGGER.info("/room/new - POST was called");
         ModelAndView modelAndView = new ModelAndView();
-        if (errors.hasErrors()) {
-            modelAndView.setViewName("addRoom");
-            Room roomForm = new Room();
-            model.addAttribute("roomForm", roomForm);
-            model.addAttribute("countryNameList", countryService.getAllCountryName());
-        } else {
-            Room newRoom = new Room(
-                    0,
-                    newRoomDto.getName(),
-                    newRoomDto.getCountry(),
-                    BulbStatus.OFF.getTitle());
-            newRoom = roomService.addNewRoom(newRoom);
-            modelAndView.setViewName("redirect:/room/" + newRoom.getId());
-            return modelAndView;
-        }
+        newRoom = roomService.addNewRoom(newRoom);
+        modelAndView.setViewName("redirect:/room/" + newRoom.getId());
         return modelAndView;
     }
 }

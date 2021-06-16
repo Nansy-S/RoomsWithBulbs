@@ -1,0 +1,70 @@
+.roomDetail {
+    position: absolute;
+    top: -120px;
+    left: 40%;
+}
+
+.roomDetail p {
+    color: white;
+    font-size: 24px;
+    font-family: Century Gothic;
+    margin-bottom: -13px;
+}
+
+.bulbOnImg, .bulbOffImg {
+    position: relative;
+    top: 10px;
+    left: 20%;
+}
+
+#cord {
+    position: absolute;
+    z-index: -2;
+    top: -10px;
+    left: 33%;
+    width: 4px;
+    height: 30px;
+    background-color: rgb(162 112 0);
+}
+
+.bulbOffImg, .bulbOnImg {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 500px;
+}
+
+.bulbOffImg {
+    background-image: linear-gradient(180deg, rgb(220, 220, 220), rgb(80 80 80));
+}
+
+.bulbOnImg {
+    background-image: radial-gradient(at top center, rgb(250, 245, 82), rgb(220, 220, 220));
+}
+
+.bulbOffImg img, .bulbOnImg img {
+    position: relative;
+    left: 40%;
+    top: -4px;
+    height: 250px;
+}
+
+.statusBtn {
+    position: absolute;
+    top: 400px;
+    left: 50px;
+    width: 100px;
+    height: 60px;
+    font-size: 24px;
+    font-family: Century Gothic;
+    border-radius: 10px;
+}
+
+.statusBtn:hover {
+    background-color: rgba(232, 177, 75, 0.1);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

@@ -9,31 +9,26 @@
 </head>
 <body>
     <div th:insert="~{fragments/main-fragment::menu}"></div>
-    <input type="button" value="LIST in table" class="button" id="listInTable"/>
     <div class="roof"></div>
     <div class="content">
         <div class="roomDetail">
-            <h2 th:utext="'Name: <b>' + ${room.name} + '</b>'">...</h2>
-            <h2 th:utext="'Country: <b>' + ${room.country} + '</b>'">...</h2>
+            <p th:utext="'Name: <b>' + ${room.name} + '</b>'">...</p>
+            <p th:utext="'Country: <b>' + ${room.country} + '</b>'">...</p>
         </div>
-        <div class="room-with-bulb">
+        <div class="room-with-bulb" th:class="${room.bulbStatus == 'ON' ? 'bulbOnImg' : 'bulbOffImg'}">
             <div id="cord"></div>
-            <div th:if="${room.bulbStatus} == 'ON'" class="bulbOnImg">
-                <img src="/images/bulb-on.png" height="250">
-            </div>
-            <div th:if="${room.bulbStatus} == 'OFF'"> class="bulbOffImg"
-                <img src="/images/bulb-off.png" height="250">
-            </div>
+            <img th:if="${room.bulbStatus} == 'ON'" src="/images/bulb-on.png">
+            <img th:if="${room.bulbStatus} == 'OFF'" src="/images/bulb-off.png">
         </div>
         <div id="changeBulbStatus">
             <form th:action="@{'/room/' + ${room.id}}" method="POST">
                 <div th:if="${room.bulbStatus == 'ON'}">
                     <input type="text" hidden name="newStatus" th:value="OFF" class="statusInput"/>
-                    <input type="submit" value="OFF" class="button statusBtn"/>
+                    <input type="submit" value="OFF" class="statusBtn"/>
                 </div>
                 <div th:if="${room.bulbStatus == 'OFF'}">
                     <input type="text" hidden name="newStatus" th:value="ON" class="statusInput"/>
-                    <input type="submit" value="ON" class="button statusBtn"/>
+                    <input type="submit" value="ON" class="statusBtn"/>
                 </div>
             </form>
         </div>

@@ -6,16 +6,16 @@
     <script src='http://code.jquery.com/jquery-latest.js'></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu-style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add-room-style.css}"/>
 </head>
 <body>
     <div th:insert="~{fragments/main-fragment::menu}"></div>
+    <div class="roof"></div>
     <div class="content">
         <div>
             <h2>Enter information</h2>
             <form th:action="@{/room/new}" th:object="${roomForm}" method="POST" name="RoomForm" autocomplete="off">
                 <p>Name:<input type="text" th:field="*{name}" class="nameField" required/> </p>
-
-
                 <p>Country:
                     <select th:field="*{country}" class="countryField" required>
                         <option text="" value="" label="---"></option>
@@ -23,9 +23,10 @@
                                 th:text="${countryName}"></option>
                     </select>
                 </p>
+
                 <div class="formButton">
                     <input type="submit" value="ADD" class="button"/>
-                    <input type="button" value="CLEAN" class="button buttonClean" />
+                    <input type="button" value="CLEAN" class="button buttonClean"/>
                 </div>
             </form>
         </div>
