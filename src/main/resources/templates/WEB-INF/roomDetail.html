@@ -25,6 +25,18 @@
                 <img src="/images/bulb-off.png" height="250">
             </div>
         </div>
+        <div id="changeBulbStatus">
+            <form th:action="@{'/room/' + ${room.id}}" method="POST">
+                <div th:if="${room.bulbStatus == 'ON'}">
+                    <input type="text" hidden name="newStatus" th:value="OFF" class="statusInput"/>
+                    <input type="submit" value="OFF" class="button statusBtn"/>
+                </div>
+                <div th:if="${room.bulbStatus == 'OFF'}">
+                    <input type="text" hidden name="newStatus" th:value="ON" class="statusInput"/>
+                    <input type="submit" value="ON" class="button statusBtn"/>
+                </div>
+            </form>
+        </div>
     </div>
     <div th:insert="~{fragments/main-fragment::footer}"></div>
 </body>
