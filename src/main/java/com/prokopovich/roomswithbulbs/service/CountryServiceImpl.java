@@ -35,7 +35,6 @@ public class CountryServiceImpl implements CountryService {
     public boolean isCountryByIp(int id, String ip) {
         Room room = roomDao.findOne(id);
         String country = geoLiteDao.findCountryByIpAddress(ip);
-        System.out.println(country);
         return room.getCountry().equals(country);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -27,20 +28,6 @@ public class RoomController {
         this.roomService = roomService;
         this.countryService = countryService;
     }
-
-    //@GetMapping(value = {"/", "/index"})
-    //public ModelAndView index(Model model, HttpServletRequest request) {
-    //    List<Room> roomsList = roomService.getAllRooms();
-    //    ModelAndView modelAndView = new ModelAndView();
-    //    modelAndView.setViewName("index");
-    //    displayRooms(model, roomsList);
-//
-   ////     String ipAddress = request.getRemoteAddr();
-    //    countryService.isCountryByIp(1, "188.130.170.0");
-    //    //roomService.isCountryByIp(1, request.getRemoteAddr());
-    //    LOGGER.info("/index - GET was called");
-    //    return modelAndView;
-    //}
 
     @GetMapping(value = {"/", "/index", "/room", })
     public ModelAndView displayRoomsList(Model model) {
@@ -75,12 +62,18 @@ public class RoomController {
     }
 
     @GetMapping(value = {"/room/{id}"})
-    public ModelAndView roomDetail(@PathVariable("id") int id) {
-        Room room = roomService.getRoomById(id);
+    public ModelAndView roomDetail(@PathVariable("id") int id, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("roomDetail");
-        modelAndView.addObject("room", room);
-        LOGGER.info("roomDetail - GET was called");
+        String ipAddress = request.getRemoteAddr();
+
+        if (countryService.isCountryByIp(id, ipAddress)) {
+            Room room = roomService.getRoomById(id);
+            modelAndView.setViewName("roomDetail");
+            modelAndView.addObject("room", room);
+            LOGGER.info("roomDetail - GET was called");
+        } else {
+            modelAndView.setViewName("redirect:/403");
+        }
         return modelAndView;
     }
 
