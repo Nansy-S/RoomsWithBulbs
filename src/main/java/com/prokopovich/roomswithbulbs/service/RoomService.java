@@ -10,7 +10,9 @@ public interface RoomService {
 
     Room changeBulStatus(int id, String status);
 
+    Room getRoomById(int id);
+
     List<Room> getAllRooms();
 
-    List<Room> filterRooms(String name, String country, String bulStatus);
+    List<Room> filterRooms(String name, String country, String bulbStatus);
 }

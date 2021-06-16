@@ -17,5 +17,5 @@ public interface RoomDao {
 
     Room findByName(String name) throws DaoException;
 
-    Collection<Room> findByNameAndCountryAndStatus(String name, String country, String bulStatus) throws DaoException;
+    Collection<Room> findByNameAndCountryAndStatus(String name, String country, String bulbStatus) throws DaoException;
 }

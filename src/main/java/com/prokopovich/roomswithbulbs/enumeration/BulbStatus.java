@@ -3,14 +3,14 @@ package com.prokopovich.roomswithbulbs.enumeration;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum BulStatus {
+public enum BulbStatus {
 
     ON("ON"),
     OFF("OFF");
 
     private final String title;
 
-    BulStatus(String title) {
+    BulbStatus(String title) {
         this.title = title;
     }
 
@@ -18,8 +18,8 @@ public enum BulStatus {
         return title;
     }
 
-    public static BulStatus fromString(String text) {
-        for (BulStatus b : BulStatus.values()) {
+    public static BulbStatus fromString(String text) {
+        for (BulbStatus b : BulbStatus.values()) {
             if (b.title.equals(text)) {
                 return b;
             }
@@ -29,7 +29,7 @@ public enum BulStatus {
 
     public static List<String> getAllTitle() {
         List<String> roleTitleList = new ArrayList<>();
-        for(BulStatus value : BulStatus.values()) {
+        for(BulbStatus value : BulbStatus.values()) {
             roleTitleList.add(value.getTitle());
         }
         return roleTitleList;

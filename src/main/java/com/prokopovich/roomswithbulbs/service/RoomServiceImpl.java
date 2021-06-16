@@ -1,9 +1,8 @@
 package com.prokopovich.roomswithbulbs.service;
 
-import com.prokopovich.roomswithbulbs.dao.GeoLiteCountryDao;
 import com.prokopovich.roomswithbulbs.dao.RoomDao;
 import com.prokopovich.roomswithbulbs.entity.Room;
-import com.prokopovich.roomswithbulbs.enumeration.BulStatus;
+import com.prokopovich.roomswithbulbs.enumeration.BulbStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room addNewRoom(Room newRoom) {
-        newRoom.setBulStatus(BulStatus.OFF.getTitle());
+        newRoom.setBulbStatus(BulbStatus.OFF.getTitle());
         return roomDao.create(newRoom);
     }
 
@@ -32,14 +31,19 @@ public class RoomServiceImpl implements RoomService {
         String result = "";
 
         Room room = roomDao.findOne(id);
-        if(room.getBulStatus().equals(status)) {
+        if(room.getBulbStatus().equals(status)) {
             result = "This Bul is already " + status + ".";
         } else {
-            room.setBulStatus(status);
+            room.setBulbStatus(status);
             result = roomDao.update(room) ? "Bul status changed." : "Server error.";
         }
         LOGGER.info(result);
         return room;
+    }
+
+    @Override
+    public Room getRoomById(int id) {
+        return roomDao.findOne(id);
     }
 
     @Override
@@ -48,10 +52,10 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<Room> filterRooms(String name, String country, String bulStatus) {
+    public List<Room> filterRooms(String name, String country, String bulbStatus) {
         if(name == null) name = "";
         if(country == null) country = "";
-        if(bulStatus == null) bulStatus = "";
-        return (List<Room>) roomDao.findByNameAndCountryAndStatus(name, country, bulStatus);
+        if(bulbStatus == null) bulbStatus = "";
+        return (List<Room>) roomDao.findByNameAndCountryAndStatus(name, country, bulbStatus);
     }
 }

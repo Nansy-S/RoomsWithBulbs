@@ -1,0 +1,78 @@
+
+ul{
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul a {
+    text-decoration: none;
+    display: block;
+    padding: 0 14px;
+    line-height: 60px;
+    width: 120px;
+    text-align: center;
+    font-size: 18px;
+    font-family: Century Gothic;
+    font-weight: 600;
+    color: white;
+}
+
+ul a:hover {
+    background: rgba(20, 20, 20, 0.4);
+    color: white;
+}
+
+footer {
+    background: rgb(49,11,2);
+    position: relative;
+    height: 60px;
+    width: 101%;
+    left: -7px;
+    color: white;
+}
+
+footer p {
+    color: white;
+    font-size: 11px;
+    font-family: Century Gothic;
+    text-align: right;
+    margin-bottom: -6px;
+    position: relative;
+    top: 5px;
+    right: 5%;
+}
+
+#listInTable {
+    position:absolute;
+    left: 6%;
+    top: 70px;
+    background-color:rgb(233, 219, 195);
+    color:rgb(49,11,2);
+    width: 16%;
+    padding: 5px;
+}
+
+#homePage, #newRoom {
+    position:absolute;
+    left: 5%;
+    top: 17px;
+    width: 5%;
+    min-height: 30px;
+    background-color:rgb(233, 219, 195);
+    text-align: center;
+    padding: 7px;
+    margin-left: 10px;
+}
+
+#newRoom {
+    left: 13%;
+    width: 8%;
+}
+
+#homePage:hover, #newRoom:hover {
+    text-decoration: none;
+    border: 2px solid rgb(130 130 130);
+}
+

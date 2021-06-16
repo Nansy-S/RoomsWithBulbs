@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add room</title>
+    <script src='http://code.jquery.com/jquery-latest.js'></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu-style.css}"/>
+</head>
+<body>
+    <div th:insert="~{fragments/main-fragment::menu}"></div>
+    <div class="content">
+        <div>
+            <h2>Enter information</h2>
+            <form th:action="@{/room/new}" th:object="${roomForm}" method="POST" name="RoomForm" autocomplete="off">
+                <p>Name:<input type="text" th:field="*{name}" class="nameField" required/> </p>
+
+
+                <p>Country:
+                    <select th:field="*{country}" class="countryField" required>
+                        <option text="" value="" label="---"></option>
+                        <option th:each ="countryName : ${countryNameList}" th:value="${countryName}"
+                                th:text="${countryName}"></option>
+                    </select>
+                </p>
+                <div class="formButton">
+                    <input type="submit" value="ADD" class="button"/>
+                    <input type="button" value="CLEAN" class="button buttonClean" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:insert="~{fragments/main-fragment::footer}"></div>
+    <script>
+        $('.buttonClean').on('click', function(){
+            $('.nameField').val("");
+            $('.countryField').val("---");
+        });
+    </script>
+</body>
+</html>

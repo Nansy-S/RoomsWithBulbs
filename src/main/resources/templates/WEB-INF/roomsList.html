@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Rooms</title>
+    <script src='http://code.jquery.com/jquery-latest.js'></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home-style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu-style.css}"/>
+</head>
+<body>
+    <div>
+        <div th:insert="~{fragments/main-fragment::menu}"></div>
+        <input type="button" value="LIST in table" class="button" id="listInTable"/>
+        <div class="roof">
+            <div id="filter">
+                <form th:action="@{/room}" method="POST" th:object="${filterFieldRoom}" name="userList" autocomplete="off">
+                    <p>Name: <input type="text" th:field="*{name}" class="nameInput"/> </p>
+                    <p>Country:
+                        <select th:field="*{country}" class="selectCountry">
+                            <option text="" value="" label="---"></option>
+                            <option th:each ="room : ${countryNameList}" th:value="${room}" th:text="${room}"></option>
+                        </select>
+                    </p>
+                    <p>Bulb status:
+                        <select th:field="*{bulbStatus}" class="selectStatus">
+                            <option text="" value="" label="---"></option>
+                            <option th:each ="status : ${bulbStatusList}" th:value="${status}" th:text="${status}"></option>
+                        </select>
+                    </p>
+                    <input type="submit" value="FILTER" class="button"/>
+                    <input type="submit" value="CLEAN" class="button buttonClean" id="buttonCleanFilter"/>
+                </form>
+            </div>
+        </div>
+        <div th:if="${#lists.isEmpty(roomsList)}">
+            <h2> Users not found. </h2>
+        </div>
+        <div class="content" id="home">
+            <div th:each ="room : ${roomsList}" class="containerRoom">
+                <a th:href="@{'/room/'+${room.id}}">
+                    <div class="room" th:styleappend="${room.bulbStatus}=='ON' ? 'background-color: rgb(253, 230, 84)'
+                                                        : 'background-color: rgb(141, 141, 141)'">
+                        <h2 th:utext="${room.name}">...</h2>
+                        <p th:utext="${room.country}"></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="content" id="tableHome" hidden>
+            <table border="1" th:unless="${#lists.isEmpty(roomsList)}">
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Bulb Status</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each ="room : ${roomsList}">
+                    <td th:utext="${room.name}">...</td>
+                    <td th:utext="${room.country}">...</td>
+                    <td th:utext="${room.bulbStatus}">...</td>
+                    <td> <a th:href="@{'/room/'+${room.id}}">go to room</a> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:insert="~{fragments/main-fragment::footer}"></div>
+    <script th:src="@{/js/main-script.js}"></script>
+</body>
+</html>

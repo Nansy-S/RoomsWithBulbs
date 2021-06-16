@@ -1,0 +1,97 @@
+
+.containerRoom {
+    display: inline-block;
+    width: 25%;
+    min-hight: 150px;
+    margin-right: -4px;
+}
+
+.room {
+    background: none;
+    font-family: Century Gothic;
+    text-align: center;
+    color: black;
+    border: 15px solid rgb(86 17 1);
+}
+
+a {
+    text-decoration:none;
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#filter {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 23%;
+    width: 74%;
+    border:3px double rgb(120 120 120);
+}
+
+#filter p {
+    display: inline-block;
+    font-family: Century Gothic;
+    font-size: 15px;
+    margin: 10px;
+}
+
+.roof input, select {
+    width: 150px;
+    font-size: 16px;
+    color: rgb(0 0 0);
+    padding-left: 10px;
+    background: rgb(245 225 184);
+    font-family: Century Gothic;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+}
+
+.roof input, .roof select {
+    width: 120px;
+}
+
+input:hover, select:hover, input:focus, select:focus{
+    border-color: #C9C9C9;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+.roof input[type="submit"] {
+    width: 80px;
+    height: 35px;
+    position: relative;
+    background: rgb(220 220 220);
+    padding: 6px;
+    left:45px;
+}
+
+#buttonCleanFilter {
+    background: rgb(136 136 136);
+}
+
+table {
+    position: relative;
+    margin: 0px;
+    font-family: Century Gothic;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+table th {
+    background-color: rgb(86 17 1);
+    padding: 15px 25px;
+    color:white;
+    font-size: 16px;
+}
+
+table td {
+    padding: 5px 10px;
+    font-weight: 600;
+}

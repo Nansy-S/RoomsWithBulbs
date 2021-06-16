@@ -21,7 +21,7 @@ public class RoomDaoImpl implements RoomDao {
 
     private static final Logger LOGGER = LogManager.getLogger(RoomDaoImpl.class);
     private static final String SQL_SELECT_FILTER = "SELECT e FROM Room e " +
-            "WHERE e.name LIKE :name AND e.country LIKE :country AND e.bulStatus LIKE :bulStatus";
+            "WHERE e.name LIKE :name AND e.country LIKE :country AND e.bulbStatus LIKE :bulbStatus";
 
     private final EntityManagerFactory entityManagerFactory;
 
@@ -105,15 +105,15 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public Collection<Room> findByNameAndCountryAndStatus(String name, String country, String bulStatus) throws DaoException {
+    public Collection<Room> findByNameAndCountryAndStatus(String name, String country, String bulbStatus) throws DaoException {
         LOGGER.info("findByUsernameAndRoleAndStatus method is executed - name = " + name +
-                ", country = " + country + ", bulStatus = " + bulStatus);
+                ", country = " + country + ", bulStatus = " + bulbStatus);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             Query query = entityManager.createQuery(SQL_SELECT_FILTER);
             query.setParameter("name", "%"+name+"%");
             query.setParameter("country", "%"+country+"%");
-            query.setParameter("bulStatus", "%"+bulStatus+"%");
+            query.setParameter("bulbStatus", "%"+bulbStatus+"%");
             return query.getResultList();
         } finally {
             entityManager.close();

@@ -15,16 +15,16 @@ public class Room {
     private String name;
     @Column(name = "country")
     private String country;
-    @Column(name = "bul_status")
-    private String bulStatus;
+    @Column(name = "bulb_status")
+    private String bulbStatus;
 
     public Room() { }
 
-    public Room(int id, String name, String country, String bulStatus) {
+    public Room(int id, String name, String country, String bulbStatus) {
         this.id = id;
         this.name = name;
         this.country = country;
-        this.bulStatus = bulStatus;
+        this.bulbStatus = bulbStatus;
     }
 
     public int getId() {
@@ -51,12 +51,12 @@ public class Room {
         this.country = country;
     }
 
-    public String getBulStatus() {
-        return bulStatus;
+    public String getBulbStatus() {
+        return bulbStatus;
     }
 
-    public void setBulStatus(String bulStatus) {
-        this.bulStatus = bulStatus;
+    public void setBulbStatus(String bulStatus) {
+        this.bulbStatus = bulStatus;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Room {
         return id == room.id &&
                 Objects.equals(name, room.name) &&
                 Objects.equals(country, room.country) &&
-                Objects.equals(bulStatus, room.bulStatus);
+                Objects.equals(bulbStatus, room.bulbStatus);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Room {
         int result = id;
         result = 37 * result + (name != null ? name.hashCode() : 0);
         result = 37 * result + (country != null ? country.hashCode() : 0);
-        result = 37 * result + (bulStatus != null ? bulStatus.hashCode() : 0);
+        result = 37 * result + (bulbStatus != null ? bulbStatus.hashCode() : 0);
         return result;
     }
 
@@ -85,6 +85,6 @@ public class Room {
                 "id = " + id +
                 ", name = " + name +
                 ", country = " + country +
-                ", bulStatus = " + bulStatus + ';';
+                ", bulStatus = " + bulbStatus + ';';
     }
 }

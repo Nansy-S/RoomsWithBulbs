@@ -5,9 +5,7 @@ import com.prokopovich.roomswithbulbs.dao.RoomDao;
 import com.prokopovich.roomswithbulbs.entity.Room;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -23,11 +21,13 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<String> getAllCountryName() {
         List<String> countryList = new ArrayList<>();
+        Locale outLocale = new Locale("EN", "us");
         String[] countryCodes = Locale.getISOCountries();
         for (String countryCode : countryCodes) {
-            Locale obj = new Locale("", countryCode);
-            countryList.add(obj.getDisplayCountry());
+            Locale obj = new Locale("en-us", countryCode);
+            countryList.add(obj.getDisplayCountry(outLocale));
         }
+        Collections.sort(countryList);
         return countryList;
     }
 
