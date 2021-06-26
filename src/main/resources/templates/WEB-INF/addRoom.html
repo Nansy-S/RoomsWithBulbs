@@ -15,9 +15,9 @@
         <div>
             <h2>Enter information</h2>
             <form th:action="@{/room/new}" th:object="${roomForm}" method="POST" name="RoomForm" autocomplete="off">
-                <p>Name:<input type="text" th:field="*{name}" class="nameField" required/> </p>
+                <p>Name:<input type="text" th:field="*{name}" class="nameField" th:required="required"/> </p>
                 <p>Country:
-                    <select th:field="*{country}" class="countryField" required>
+                    <select th:field="*{country}" class="countryField" th:required="required">
                         <option text="" value="" label="---"></option>
                         <option th:each ="countryName : ${countryNameList}" th:value="${countryName}"
                                 th:text="${countryName}"></option>

@@ -17,17 +17,17 @@
         </div>
         <div class="room-with-bulb" th:class="${room.bulbStatus == 'ON' ? 'bulbOnImg' : 'bulbOffImg'}">
             <div id="cord"></div>
-            <img th:if="${room.bulbStatus} == 'ON'" src="/images/bulb-on.png">
-            <img th:if="${room.bulbStatus} == 'OFF'" src="/images/bulb-off.png">
+            <img th:if="${room.bulbStatus} == 'ON'" src="/images/bulb-on.png"/>
+            <img th:if="${room.bulbStatus} == 'OFF'" src="/images/bulb-off.png"/>
         </div>
         <div id="changeBulbStatus">
             <form th:action="@{'/room/' + ${room.id}}" method="POST">
                 <div th:if="${room.bulbStatus == 'ON'}">
-                    <input type="text" hidden name="newStatus" th:value="OFF" class="statusInput"/>
+                    <input type="hidden" name="newStatus" th:value="OFF" class="statusInput"/>
                     <input type="submit" value="OFF" class="statusBtn"/>
                 </div>
                 <div th:if="${room.bulbStatus == 'OFF'}">
-                    <input type="text" hidden name="newStatus" th:value="ON" class="statusInput"/>
+                    <input type="hidden" name="newStatus" th:value="ON" class="statusInput"/>
                     <input type="submit" value="ON" class="statusBtn"/>
                 </div>
             </form>

@@ -33,8 +33,8 @@
                 </form>
             </div>
         </div>
-        <div th:if="${#lists.isEmpty(roomsList)}">
-            <h2> Users not found. </h2>
+        <div th:if="${#lists.isEmpty(roomsList)}" id="notFound">
+            <h2>Rooms not found.</h2>
         </div>
         <div class="content" id="home">
             <div th:each ="room : ${roomsList}" class="containerRoom">
@@ -47,7 +47,7 @@
                 </a>
             </div>
         </div>
-        <div class="content" id="tableHome" hidden>
+        <div class="content" id="tableHome" hidden="true">
             <table border="1" th:unless="${#lists.isEmpty(roomsList)}">
                 <tr>
                     <th>Name</th>

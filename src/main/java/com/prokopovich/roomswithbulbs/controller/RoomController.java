@@ -66,6 +66,10 @@ public class RoomController {
         ModelAndView modelAndView = new ModelAndView();
         String ipAddress = request.getRemoteAddr();
 
+        if(ipAddress.equals("0:0:0:0:0:0:0:1")) {
+            ipAddress = "185.70.12.0";
+        }
+
         if (countryService.isCountryByIp(id, ipAddress)) {
             Room room = roomService.getRoomById(id);
             modelAndView.setViewName("roomDetail");
@@ -103,7 +107,7 @@ public class RoomController {
         LOGGER.info("/room/new - POST was called");
         ModelAndView modelAndView = new ModelAndView();
         newRoom = roomService.addNewRoom(newRoom);
-        modelAndView.setViewName("redirect:/room/" + newRoom.getId());
+        modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
 }
