@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RoomsWithBulbsApplication {
 
     public static void main(String[] args) {
-        CreatedDatabase.createDatabase();
+        //CreatedDatabase.createDatabase();
         SpringApplication.run(RoomsWithBulbsApplication.class, args);
     }
 }

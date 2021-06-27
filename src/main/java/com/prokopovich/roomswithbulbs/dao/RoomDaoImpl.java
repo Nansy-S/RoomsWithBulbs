@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -27,6 +28,8 @@ public class RoomDaoImpl implements RoomDao {
 
     @Autowired
     public RoomDaoImpl(EntityManagerFactory entityManagerFactory) {
+        //this.entityManagerFactory = Persistence.createEntityManagerFactory("ps-hb-roomswithbulbs");
+
         this.entityManagerFactory = entityManagerFactory;
     }
 
